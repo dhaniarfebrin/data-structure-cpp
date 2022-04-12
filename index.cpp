@@ -10,7 +10,6 @@ string *nim;
 int jumlah_mhs;
 
 void InputMahasiswa();
-void HitungIpk(int* jumlah_matkul, int nilai_matkul[99]);
 void InputNilaiMatkul();
 void urutkanNIM();
 void tampilkanMahasiswa();
