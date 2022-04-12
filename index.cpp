@@ -70,13 +70,16 @@ int main() {
 }
 
 void InputMahasiswa() {
-	nama = new string[99]; // memory allocation
-	nim = new string[99]; // memory allocation
 
 	cout<<"Masukkan jumlah mahasiswa : ";
 	cin>>jumlah_mhs;
 
+	nama = new string[jumlah_mhs]; // memory allocation
+	nim = new string[jumlah_mhs]; // memory allocation
+
 	for (int i = 0; i < jumlah_mhs; i++ ) {
+		cout<<endl;
+
 		cout<<"Input data mahasiswa - "<<i+1<<" : "<<endl;
 		cout<<"Nama\t : ";
 		cin>>*(nama+i);
