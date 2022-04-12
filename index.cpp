@@ -132,9 +132,31 @@ void InputNilaiMatkul() {
 	HitungIpk(&jumlah_matkul, nilai_matkul);
 }
 
-void urutkanNIM() {
-	// selection sorting
+void bubbleSort() {
+	int i, j, second = 0;
+	string temp;
 
+	for(i = 0; i < (jumlah_mhs-1); i++) {
+		for (j = 0; j < (jumlah_mhs-1); j++){
+			second = j+1;
+			if (*(nim+j) > *(nim+second)){
+				// pertukaran nama
+				temp = *(nama+j);
+				*(nama+j) = *(nama+second);
+				*(nama+second) = temp;
+
+				// pertukaran nim
+				temp = *(nim+j);
+				*(nim+j) = *(nim+second);
+				*(nim+second) = temp;
+			}
+			
+		}
+		
+	}
+}
+
+void selectionSort() {
 	int i, maks, j;
 	string temp;
 
@@ -157,6 +179,37 @@ void urutkanNIM() {
 			*(nim+i) = *(nim+maks);
 			*(nim+maks) = temp;
 		}
+	}
+}
+
+void urutkanNIM() {
+	// selection sorting
+	int sort;
+
+	sortMenu:
+	system("clear");
+	cin.ignore();
+	cout<<"==========="<<endl;
+	cout<<"Mengurutkan"<<endl;
+	cout<<"==========="<<endl;
+	cout<<"1. Bubble sort"<<endl;
+	cout<<"2. Selection sort"<<endl;
+	cout<<"3. Insertion sort"<<endl;
+	cout<<"pilih salah satu [1-3] : "; cin>>sort;
+
+	switch(sort) {
+		case 1:
+			bubbleSort();
+			break;
+		case 2:
+			selectionSort();
+			break;
+		case 3:
+			break;
+		default:
+			cout<<"menu yang anda inputkan tidak ada";
+			system("pause");
+			goto sortMenu;
 	}
 
 	cout<<"Berhasil diurutkan Ascending"<<endl;
