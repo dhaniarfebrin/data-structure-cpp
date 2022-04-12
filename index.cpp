@@ -53,6 +53,7 @@ int main() {
 				break;
 		}
 		
+		cout<<endl;
 		cout<<"Ingin keluar ? [y/n] :  ";
 		cin>>exit;
 
@@ -182,6 +183,27 @@ void selectionSort() {
 	}
 }
 
+void insertionSort() {
+	int i, j, second;
+	string temp, temp2;
+
+	for (i = 0; i < jumlah_mhs; i++) {
+		temp = *(nim+i);
+		temp2 = *(nama+i);
+		j = i-1; 
+
+		while (*(nim+j) > temp && j >= 0)
+		{
+			*(nim+j+1) = *(nim+j);
+			*(nama+j+1) = *(nama+j);
+			j--;
+		}
+		second = j+1;
+		*(nim+second) = temp;
+		*(nama+second) = temp2;
+	}
+}
+
 void urutkanNIM() {
 	// selection sorting
 	int sort;
@@ -205,6 +227,7 @@ void urutkanNIM() {
 			selectionSort();
 			break;
 		case 3:
+			insertionSort();
 			break;
 		default:
 			cout<<"menu yang anda inputkan tidak ada";
