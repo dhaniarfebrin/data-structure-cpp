@@ -13,6 +13,7 @@ void InputMahasiswa();
 void InputNilaiMatkul();
 void urutkanNIM();
 void tampilkanMahasiswa();
+void cariMhs();
 
 int main() {
 	int menu;
@@ -28,8 +29,9 @@ int main() {
 		cout<<"2. Hitung IPK"<<endl;
 		cout<<"3. Urutkan Mahasiswa berdasarkan NIM"<<endl;
 		cout<<"4. Tampilkan daftar mahasiswa"<<endl;
-		cout<<"5. Exit"<<endl;
-		cout<<"Pilih salah satu menu diatas [1/2/3/4/5]: ";
+		cout<<"5. Cari Mahasiswa"<<endl;
+		cout<<"6. Exit"<<endl;
+		cout<<"Pilih salah satu menu diatas [1/2/3/4/5/6]: ";
 		cin>>menu;
 	
 		switch (menu) {
@@ -46,6 +48,9 @@ int main() {
 				tampilkanMahasiswa();
 				break;
 			case 5:
+				cariMhs();
+				break;
+			case 6:
 				goto keluar;
 			default:
 				cout<<"Menu tidak ada"<<endl;
@@ -66,6 +71,31 @@ int main() {
 	delete [] nim;
 
 	return 0;
+}
+
+void cariMhs() {
+	system("clear");
+	string nama_yang_dicari;
+	bool ketemu = false;
+	int posisi;
+
+	cout<<"Cari Mahasiswa"<<endl;
+	cout<<"Nama Mahasiswa yang Dicari : ";
+	cin>>nama_yang_dicari;
+
+	for(int i = 0; i < jumlah_mhs; i++) {
+		if(*(nama+i) == nama_yang_dicari) {
+			ketemu = true;
+			posisi = i;
+			break;
+		}
+	}
+
+	if(ketemu) {
+		cout<<"Nama ditemukan, '"<<nama_yang_dicari<<"' ditemukan di posisi "<< posisi <<" indeks array"<<endl;
+	} else {
+		cout<<"Nama tidak ditemukan"<<endl;
+	}
 }
 
 void InputMahasiswa() {
@@ -155,8 +185,8 @@ void bubbleSort() {
 			}
 			
 		}
-		
 	}
+	cout<<"Berhasil diurutkan dengan Bubble Ascending"<<endl;
 }
 
 void selectionSort() {
@@ -183,6 +213,7 @@ void selectionSort() {
 			*(nim+maks) = temp;
 		}
 	}
+	cout<<"Berhasil diurutkan dengan Selection Ascending"<<endl;
 }
 
 void insertionSort() {
@@ -204,6 +235,7 @@ void insertionSort() {
 		*(nim+second) = temp;
 		*(nama+second) = temp2;
 	}
+	cout<<"Berhasil diurutkan dengan Insertion Ascending"<<endl;
 }
 
 void urutkanNIM() {
@@ -236,8 +268,6 @@ void urutkanNIM() {
 			system("pause");
 			goto sortMenu;
 	}
-
-	cout<<"Berhasil diurutkan Ascending"<<endl;
 }
 
 void tampilkanMahasiswa() {
