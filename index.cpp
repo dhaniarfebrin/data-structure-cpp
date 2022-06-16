@@ -4,8 +4,13 @@
 using namespace std;
 
 // global variable declaration
-string *nama;
-string *nim;
+struct
+{
+	/* data */
+	string nama;
+	string nim;
+}Mahasiswa[99];
+
 
 int jumlah_mhs;
 
@@ -67,8 +72,8 @@ int main() {
 	
 	keluar:
 
-	delete [] nama;
-	delete [] nim;
+	// delete [] nama;
+	// delete [] nim;
 
 	return 0;
 }
@@ -84,7 +89,7 @@ void cariMhs() {
 	cin>>nama_yang_dicari;
 
 	for(int i = 0; i < jumlah_mhs; i++) {
-		if(*(nama+i) == nama_yang_dicari) {
+		if(Mahasiswa[i].nama == nama_yang_dicari) {
 			ketemu = true;
 			posisi = i;
 			break;
@@ -103,17 +108,17 @@ void InputMahasiswa() {
 	cout<<"Masukkan jumlah mahasiswa : ";
 	cin>>jumlah_mhs;
 
-	nama = new string[jumlah_mhs]; // memory allocation
-	nim = new string[jumlah_mhs]; // memory allocation
+	// Mahasiswa.nama = new string[jumlah_mhs]; // memory allocation
+	// Mahasiswa.nim = new string[jumlah_mhs]; // memory allocation
 
 	for (int i = 0; i < jumlah_mhs; i++ ) {
 		cout<<endl;
 
 		cout<<"Input data mahasiswa - "<<i+1<<" : "<<endl;
 		cout<<"Nama\t : ";
-		cin>>*(nama+i);
+		cin>>Mahasiswa[i].nama;
 		cout<<"NIM\t : ";
-		cin>>*(nim+i);
+		cin>>Mahasiswa[i].nim;
 	}
 	
 }
@@ -172,16 +177,16 @@ void bubbleSort() {
 	for(i = 0; i < (jumlah_mhs-1); i++) {
 		for (j = 0; j < (jumlah_mhs-1); j++){
 			second = j+1;
-			if (*(nim+j) > *(nim+second)){
+			if (Mahasiswa[j].nim > Mahasiswa[second].nim){
 				// pertukaran nama
-				temp = *(nama+j);
-				*(nama+j) = *(nama+second);
-				*(nama+second) = temp;
+				temp = Mahasiswa[j].nama;
+				Mahasiswa[j].nama = Mahasiswa[second].nama;
+				Mahasiswa[second].nama = temp;
 
 				// pertukaran nim
-				temp = *(nim+j);
-				*(nim+j) = *(nim+second);
-				*(nim+second) = temp;
+				temp = Mahasiswa[j].nim;
+				Mahasiswa[j].nim = Mahasiswa[second].nim;
+				Mahasiswa[second].nim = temp;
 			}
 			
 		}
@@ -196,21 +201,21 @@ void selectionSort() {
 	for(i = 0; i < jumlah_mhs; i++) {
 		maks = i;
 		for(j = i+1; j < jumlah_mhs; j++) {
-			if(*(nim+maks) > *(nim+j)){
+			if(Mahasiswa[maks].nim > Mahasiswa[j].nim){
 				// mencari indeks dengan value terendah
 				maks = j;
 			}
 		}
-		if (*(nim+i) != *(nim+maks)) {
+		if (Mahasiswa[i].nim != Mahasiswa[maks].nim) {
 			// pertukaran nama
-			temp = *(nama+i);
-			*(nama+i) = *(nama+maks);
-			*(nama+maks) = temp;
+			temp = Mahasiswa[i].nama;
+			Mahasiswa[i].nama = Mahasiswa[maks].nama;
+			Mahasiswa[maks].nama = temp;
 
 			// pertukaran nim
-			temp = *(nim+i);
-			*(nim+i) = *(nim+maks);
-			*(nim+maks) = temp;
+			temp = Mahasiswa[i].nim;
+			Mahasiswa[i].nim = Mahasiswa[maks].nim;
+			Mahasiswa[maks].nim = temp;
 		}
 	}
 	cout<<"Berhasil diurutkan dengan Selection Ascending"<<endl;
@@ -221,19 +226,19 @@ void insertionSort() {
 	string temp, temp2;
 
 	for (i = 0; i < jumlah_mhs; i++) {
-		temp = *(nim+i);
-		temp2 = *(nama+i);
+		temp = Mahasiswa[i].nim;
+		temp2 = Mahasiswa[i].nama;
 		j = i-1; 
 
-		while (*(nim+j) > temp && j >= 0)
+		while (Mahasiswa[j].nim > temp && j >= 0)
 		{
-			*(nim+j+1) = *(nim+j);
-			*(nama+j+1) = *(nama+j);
+			Mahasiswa[j+1].nim = Mahasiswa[j].nim;
+			Mahasiswa[j+1].nama = Mahasiswa[j].nama;
 			j--;
 		}
 		second = j+1;
-		*(nim+second) = temp;
-		*(nama+second) = temp2;
+		Mahasiswa[second].nim = temp;
+		Mahasiswa[second].nama = temp2;
 	}
 	cout<<"Berhasil diurutkan dengan Insertion Ascending"<<endl;
 }
@@ -279,6 +284,6 @@ void tampilkanMahasiswa() {
 	cout<<"|  NIM  |  Nama  |"<<endl;
 
 	for(int i = 0; i < jumlah_mhs; i++ ) {
-		cout<<"| "<<*(nim+i)<<" | "<<*(nama+i)<<" | "<<endl;
+		cout<<"| "<<Mahasiswa[i].nim<<" | "<<Mahasiswa[i].nama<<" | "<<endl;
 	}
 }
