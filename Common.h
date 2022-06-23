@@ -7,7 +7,7 @@ using namespace std;
 #include "queue.h"
 #include "functions.h"
 
-int main() {
+int common() {
 	int menu;
 	string exit;
 	bool isExit = false;
